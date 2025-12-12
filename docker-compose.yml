@@ -1,0 +1,12 @@
+services:
+  gtextview:
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - RPC_URL_8453=https://mainnet.base.org
+      - CONTRACT_ADDRESS_8453=0xcc39fe145eece8a733833d7a78dca7f287996693
+      - RPC_URL_81457=https://rpc.blast.io
+      - CONTRACT_ADDRESS_81457=0x971b2d96eFc3cffb8bAcE89A17AbfEd0b8743cD1

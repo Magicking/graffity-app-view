@@ -61,6 +61,15 @@ func NewERC721Service(rpcURL, contractAddress string) (*ERC721Service, error) {
 	}, nil
 }
 
+// GetChainID retrieves the chain ID from the connected RPC server
+func (s *ERC721Service) GetChainID(ctx context.Context) (*big.Int, error) {
+	chainID, err := s.client.ChainID(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get chain ID from RPC: %w", err)
+	}
+	return chainID, nil
+}
+
 func (s *ERC721Service) GetTokenMetadata(ctx context.Context, tokenID string) (*ERC721Metadata, error) {
 	// Call tokenURI(tokenId) on the contract
 	tokenURI, err := s.callTokenURI(ctx, tokenID)
